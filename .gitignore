@@ -2,3 +2,6 @@
 .vs/Assignment2Robot/v15/ipch/AutoPCH/cbcada2d300e044a/MAIN.ipch
 .vs/Assignment2Robot/v15/.suo
 .vs/Assignment2Robot/v15/Browse.VC.db
+*.ipch
+*.ipch
+*.ipch

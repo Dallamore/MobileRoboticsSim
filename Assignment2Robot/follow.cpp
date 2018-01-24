@@ -1,46 +1,98 @@
 #include <iostream>
 #include <stdlib.h>
 #include <Aria.h>
-
 #include "follow.h"
-// Implementation
 
-// Constructor
-follow::follow() : ArAction("Follow Edge")
-{
-  speed = 50; // Set the robots speed to 50 mm/s. 200 is top speed
-  deltaHeading = 0; // Straight line
+follow::follow() : ArAction("Edge Following!") {
+	speed = 200;
+	deltaHeading = 0;
 
-  setPoint = 500; // 0.5 m
+	setPoint = 500;
 
-  // Proportional control
-  pGain = 0; // CHANGE THIS
+	first = true;
+
+	last_out = 0;
+
+	pGain = 0.03;
+	iGain = 0.00005;
+	dGain = 1.3;
+
+	last_angle = 0;
 }
 
 // Body of action
-ArActionDesired * follow::fire(ArActionDesired d)
-{
- desiredState.reset(); // reset the desired state (must be done)
+ArActionDesired * follow::fire(ArActionDesired d) {
+	if (first) {
+		//saves calling this every time
+		//causes access violation when done in constructor
+		//myRobot probably isn't initialised by then
+		radius = myRobot->getRobotRadius();
+		first = false;
+	}
+	desiredState.reset();
 
- // Get sonar readings
- leftSonar = myRobot->getClosestSonarRange(-20, 100);
- rightSonar = myRobot->getClosestSonarRange(-100, 20);
+	switch (state) {
+	case IDLE:
+		if (myRobot->checkRangeDevicesCurrentPolar(-110, 110) - radius <= 1000) {
+			state = FOLLOW;
+		}
+		else break;
+	case FOLLOW:
+		double angle;
+		double dist;
+		dist = myRobot->checkRangeDevicesCurrentPolar(-110, 110, &angle) - radius;
+		// Find error
+		prevError = error;
+		error = dist - setPoint;
+		if (error >= 4000) {
+			error = prevError;
+		}
+		if (error >= 500 || error <= -500) {
+			state = IDLE;
+			break;
+		}
+		ArLog::log(ArLog::Normal, "FOLLOW: following wall %.2f mm away", dist);
 
- // Find error
- error = 0; // CHANGE THIS
+		// Calculate PID output
+		proportional = pGain * error;
 
- // Calculate proportional output
- output = 0; // CHANGE THIS
+		integral = iGain * errorHistory;
 
- // Implement control action
- deltaHeading = output; 
+		derivative = dGain * (error - prevError);
 
- std::cout << leftSonar << " " << rightSonar << " " << error << " " << output << std::endl;
+		output = derivative + proportional + integral;
 
- desiredState.setVel(speed); // set the speed of the robot in the desired state
- desiredState.setDeltaHeading(deltaHeading); // Set the heading change of the robot
+		//filter out (probable) anonamlies
+		if (output < -90 || output > 90) {
+			std::cout << "out: " << output;
+			std::cout << ", last: " << last_out << ", ";
+			std::cout << "prop: " << proportional << ", ";
+			std::cout << "deriv: " << derivative;
+			std::cout << std::endl;
+			output = last_out;
+		}
+		last_out = output;
+		errorHistory = errorHistory + error;
 
- return &desiredState; // give the desired state to the robot for actioning
+		//tries to avoid turning into a corner in some cases
+		if ((angle < 0 && last_angle > 0) || (angle > 0 && last_angle < 0)) {
+			angle = last_angle;
+		}
+		/*else if {
+		output = -output;
+		}*/
+		//determine if wall is left or right of robot
+		if (angle < 0) output = -output;
+		deltaHeading = output;
+
+		desiredState.setDeltaHeading(deltaHeading);
+		last_angle = angle;
+
+		desiredState.setVel(speed);
+		state = IDLE;
+		break;
+	default:
+		break;
+	}
+	return &desiredState;
 }
-
-
