@@ -136,10 +136,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="follow.h" />
+    <ClInclude Include="wander.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="follow.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="wander.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

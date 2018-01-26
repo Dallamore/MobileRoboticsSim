@@ -1,5 +1,6 @@
 #include "Aria.h"
 #include "follow.h"
+#include "wander.h"
 
 int main(int argc, char **argv)
 {
@@ -58,10 +59,13 @@ int main(int argc, char **argv)
   // add a set of actions that combine together to effect the wander behavior
   ArActionStallRecover recover;
   ArActionBumpers bumpers;
-  follow follow; 
+  follow follow;
+  wander wander;
+
   robot.addAction(&recover, 100);
   robot.addAction(&bumpers, 75);
   robot.addAction(&follow, 50);
+  robot.addAction(&wander, 0);
   
   // wait for robot task loop to end before exiting the program
   robot.waitForRunExit();

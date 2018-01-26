@@ -7,7 +7,7 @@ follow::follow() : ArAction("Edge Following!") {
 	speed = 200;
 	deltaHeading = 0;
 
-	setPoint = 500;
+	setPoint = 1000;
 
 	first = true;
 
@@ -41,7 +41,7 @@ ArActionDesired * follow::fire(ArActionDesired d) {
 
 	switch (state) {
 	case IDLE:
-		if (distance <= 1000) {
+		if (distance <= 1500) {
 			state = FOLLOW;
 		}
 		else {
