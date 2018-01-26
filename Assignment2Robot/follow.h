@@ -18,16 +18,25 @@ protected:
 	double setPoint;
 	double error;
 	double output;
+
 	double pGain;
-	double proportional;
 	double iGain;
-	double integral;
 	double dGain;
-	double derivative;
+
+	double pOut;
+	double iOut;
+	double dOut;
+
 	double radius;
 	double last_angle;
 	double last_out;
 	double errorHistory;
 	double prevError;
+	
+	double angle;
 	bool first;
+
+	double leftSonar;
+	double rightSonar;
+
 };
