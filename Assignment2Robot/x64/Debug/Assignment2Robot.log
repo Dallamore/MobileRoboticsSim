@@ -1,4 +1,3 @@
 ﻿  wander.cpp
-  follow.cpp
-  Generating Code...
+c:\users\david\documents\robotics\assignment2robot\assignment2robot\wander.cpp(85): warning C4477: 'printf' : format string '%f' requires an argument of type 'double', but variadic argument 1 has type 'int'
   Assignment2Robot.vcxproj -> C:\Users\David\Documents\Robotics\Assignment2Robot\x64\Debug\Assignment2Robot.exe

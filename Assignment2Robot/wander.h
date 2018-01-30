@@ -17,6 +17,8 @@ protected:
 	double oldY;
 	double angle;
 	double oldTheta;
+	double currentTheta;
+	double aim;
 	int speed;
 	bool turnComplete();
 
