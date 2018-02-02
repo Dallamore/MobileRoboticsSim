@@ -17,9 +17,11 @@ protected:
 	double oldY;
 	double angle;
 	double oldTheta;
-	double currentTheta;
-	double aim;
 	int speed;
 	bool turnComplete();
+
+	double currentTheta;
+	double aim;
+	bool turnDone;
 
 };
