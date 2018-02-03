@@ -135,10 +135,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="avoid.h" />
     <ClInclude Include="follow.h" />
     <ClInclude Include="wander.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="avoid.cpp" />
     <ClCompile Include="follow.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="wander.cpp" />

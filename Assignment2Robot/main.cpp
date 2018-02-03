@@ -1,6 +1,7 @@
 #include "Aria.h"
 #include "follow.h"
 #include "wander.h"
+#include "avoid.h"
 
 int main(int argc, char **argv)
 {
@@ -61,11 +62,13 @@ int main(int argc, char **argv)
   ArActionBumpers bumpers;
   follow follow;
   wander wander;
+  avoid avoid;
 
   robot.addAction(&recover, 100);
   robot.addAction(&bumpers, 75);
-  robot.addAction(&follow, 50);
-  robot.addAction(&wander, 0);
+  robot.addAction(&avoid, 70);
+  robot.addAction(&follow, 60);
+  robot.addAction(&wander, 50);
   
   // wait for robot task loop to end before exiting the program
   robot.waitForRunExit();

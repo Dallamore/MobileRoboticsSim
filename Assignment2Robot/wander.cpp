@@ -11,21 +11,15 @@ wander::wander() : ArAction("Wander around") {
 	oldY = 0;
 	distance = 0;
 	travelled = 0;
-	turnDone = false;
 }
 
 ArActionDesired * wander::fire(ArActionDesired d) {
 	desiredState.reset();
 
 	travelled = sqrt(pow(myRobot->getX() - oldX, 2) + pow(myRobot->getY() - oldY, 2));
-
-
-
-		currentTheta = myRobot->getTh();
-		aim = oldTheta + angle;
-	//	return currentTheta >= aim - 5 && currentTheta <= aim + 5;
-
-
+	
+	currentTheta = myRobot->getTh();
+	aim = oldTheta + angle;
 
 	switch (state) {
 	case forwards:
@@ -44,19 +38,10 @@ ArActionDesired * wander::fire(ArActionDesired d) {
 			oldTheta = myRobot->getTh();
 			state = forwards;
 			distance = rand() % 1000 + 500;
-					
-			angle = rand() % 140 + 20;
+			angle = rand() % 140 + -140;
 
-			if (!((int)angle % 2 == 0)) {
-				angle = -angle;
-				heading = -heading;
-			}
-			else {
-				heading = heading;
-			}
 			travelled = 0;
 			printf("wander: angle %.2f     distance %.2f\n", angle, distance);
-			turnDone = false;
 		}
 		break;
 
@@ -67,10 +52,3 @@ ArActionDesired * wander::fire(ArActionDesired d) {
 
 	return &desiredState;
 }
-
-//bool wander::turnComplete() {
-//	currentTheta = myRobot->getTh();
-//	aim = oldTheta + angle;
-//
-//	return currentTheta >= aim - 5 && currentTheta <= aim + 5;
-//}
