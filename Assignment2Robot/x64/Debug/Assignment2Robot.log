@@ -1,2 +1,6 @@
-﻿  avoid.cpp
+﻿  wander.cpp
+  main.cpp
+  follow.cpp
+  avoid.cpp
+  Generating Code...
   Assignment2Robot.vcxproj -> C:\Users\David\Documents\Robotics\Assignment2Robot\x64\Debug\Assignment2Robot.exe

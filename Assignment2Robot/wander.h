@@ -16,10 +16,10 @@ protected:
 	double oldX;
 	double oldY;
 	double angle;
-	double oldTheta;
+	double oldAngle;
 	int speed;
 
-	double currentTheta;
+	double currentAngle;
 	double aim;
 
 };

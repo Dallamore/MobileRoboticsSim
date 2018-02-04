@@ -18,8 +18,8 @@ ArActionDesired * wander::fire(ArActionDesired d) {
 
 	travelled = sqrt(pow(myRobot->getX() - oldX, 2) + pow(myRobot->getY() - oldY, 2));
 	
-	currentTheta = myRobot->getTh();
-	aim = oldTheta + angle;
+	currentAngle = myRobot->getTh();
+	aim = oldAngle + angle;
 
 	switch (state) {
 	case forwards:
@@ -29,13 +29,13 @@ ArActionDesired * wander::fire(ArActionDesired d) {
 		break;
 
 	case turn:
-		if (!(currentTheta >= aim - 5 && currentTheta <= aim + 5)) {
+		if (!(currentAngle >= aim - 5 && currentAngle <= aim + 5)) {
 			desiredState.setDeltaHeading(heading);
 		}
 		else {
 			oldX = myRobot->getX();
 			oldY = myRobot->getY();
-			oldTheta = myRobot->getTh();
+			oldAngle = myRobot->getTh();
 			state = forwards;
 			distance = rand() % 1000 + 500;
 			angle = rand() % 140 + -140;

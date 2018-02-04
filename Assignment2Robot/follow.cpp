@@ -3,7 +3,7 @@
 #include <Aria.h>
 #include "follow.h"
 
-follow::follow() : ArAction("Edge Following!") {
+edgeFollow::edgeFollow() : ArAction("Edge Following!") {
 	speed = 200;
 	deltaHeading = 0;
 
@@ -20,7 +20,7 @@ follow::follow() : ArAction("Edge Following!") {
 	last_angle = 0;
 }
 
-ArActionDesired * follow::fire(ArActionDesired d) {
+ArActionDesired * edgeFollow::fire(ArActionDesired d) {
 	if (first) {
 		radius = myRobot->getRobotRadius();
 		first = false;
@@ -40,15 +40,15 @@ ArActionDesired * follow::fire(ArActionDesired d) {
 	}
 
 	switch (state) {
-	case IDLE:
+	case idle:
 		if (distance <= 1500) {
-			state = FOLLOW;
+			state = following;
 		}
 		else {
 			break;
 		}
 
-	case FOLLOW:
+	case following:
 		
 		prevError = error;
 		error = distance - setPoint;
@@ -57,7 +57,7 @@ ArActionDesired * follow::fire(ArActionDesired d) {
 			error = prevError;
 		}
 		if (error >= 500 || error <= -500) {
-			state = IDLE;
+			state = idle;
 			break;
 		}
 		
@@ -72,7 +72,10 @@ ArActionDesired * follow::fire(ArActionDesired d) {
 		last_out = output;
 		errorHistory = errorHistory + error;
 
-		if (angle < 0) output = -output;
+		if (angle < 0) {
+			output = -output;
+		}
+
 		deltaHeading = output;
 
 		desiredState.setDeltaHeading(deltaHeading);
@@ -80,7 +83,7 @@ ArActionDesired * follow::fire(ArActionDesired d) {
 
 		desiredState.setVel(speed);
 
-		state = IDLE;
+		state = idle;
 		
 		break;
 

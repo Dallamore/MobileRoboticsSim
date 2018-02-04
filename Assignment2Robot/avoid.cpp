@@ -3,7 +3,7 @@
 #include <Aria.h>
 #include "avoid.h"
 
-avoid::avoid() : ArAction("Edge Following!") {
+avoid::avoid() : ArAction("avoid dat crash boi") {
 	speed = 50;
 	state = idle;
 	proximity = 500;

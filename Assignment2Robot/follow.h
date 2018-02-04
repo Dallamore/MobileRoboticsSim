@@ -1,17 +1,17 @@
-class follow : public ArAction
+class edgeFollow : public ArAction
 {
 public:
-	follow();
+	edgeFollow();
 	ArActionDesired * fire(ArActionDesired d);
-	virtual ~follow() {}
+	virtual ~edgeFollow() {}
 	ArActionDesired desiredState;
 
 protected:
 	int speed;
 	double deltaHeading;
-	enum STATE {
-		IDLE,
-		FOLLOW
+	enum state {
+		idle,
+		following
 	};
 	int state;
 

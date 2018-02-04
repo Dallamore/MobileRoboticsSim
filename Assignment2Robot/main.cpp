@@ -60,7 +60,7 @@ int main(int argc, char **argv)
   // add a set of actions that combine together to effect the wander behavior
   ArActionStallRecover recover;
   ArActionBumpers bumpers;
-  follow follow;
+  edgeFollow follow;
   wander wander;
   avoid avoid;
 
