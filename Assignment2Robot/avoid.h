@@ -7,16 +7,19 @@ public:
 	ArActionDesired desiredState;
 
 protected:
+	double leftSonar;
+	double rightSonar;
+	bool leftyRighty;
+	double distance;
+
 	enum STATE {
 		idle,
 		left,
 		right
 	};
+
 	int state;
 	int speed;
-
 	double proximity;
-	double limit;
-	double angle;
 	double heading;
 };

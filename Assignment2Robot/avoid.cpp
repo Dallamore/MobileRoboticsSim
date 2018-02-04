@@ -5,27 +5,35 @@
 
 avoid::avoid() : ArAction("Edge Following!") {
 	speed = 50;
-	limit = 150;
 	state = idle;
-	proximity = 250;
+	proximity = 500;
 	heading = 135;
-
 }
 
 ArActionDesired * avoid::fire(ArActionDesired d) {
 	desiredState.reset();
 
-	double dist;
-
 	switch (state) {
 	case idle:
-		dist = myRobot->checkRangeDevicesCurrentPolar(-60, 60, &angle) - myRobot->getRobotRadius();
-		if (dist <= proximity) {
+
+		leftSonar = myRobot->getClosestSonarRange(-60, 0);
+		rightSonar = myRobot->getClosestSonarRange(0, 60);
+
+		if (leftSonar <= rightSonar) {
+			distance = leftSonar;
+			leftyRighty = 1;
+		}
+		else {
+			distance = rightSonar;
+			leftyRighty = 0;
+		}
+
+		if (distance <= proximity) {
 			speed = 25;
-			if (angle > 0) {
+			if (leftyRighty == 0) {
 				state = right;
 			}
-			else {
+			else{
 				state = left;
 			}
 		}
@@ -34,18 +42,23 @@ ArActionDesired * avoid::fire(ArActionDesired d) {
 		}
 		break;
 	case left:
-		ArLog::log(ArLog::Normal, "AVOID turning %.2f", heading);
 		desiredState.setDeltaHeading(heading);
 		desiredState.setVel(speed);
 		state = idle;
+
+		printf("avoid with left turn %.2f\n", heading);
+
 		break;
 
 	case right:
-		ArLog::log(ArLog::Normal, "AVOID turning %.2f", -heading);
 		desiredState.setDeltaHeading(-heading);
 		desiredState.setVel(speed);
 		state = idle;
+
+		printf("avoid with right turn %.2f\n", -heading);
+
 		break;
+
 	default:
 		break;
 	}
