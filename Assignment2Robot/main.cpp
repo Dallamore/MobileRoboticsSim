@@ -2,6 +2,7 @@
 #include "follow.h"
 #include "wander.h"
 #include "avoid.h"
+#include "map.h"
 
 int main(int argc, char **argv)
 {
@@ -63,12 +64,14 @@ int main(int argc, char **argv)
   edgeFollow follow;
   wander wander;
   avoid avoid;
+  map map;
 
   robot.addAction(&recover, 100);
   robot.addAction(&bumpers, 75);
   robot.addAction(&avoid, 70);
   robot.addAction(&follow, 60);
   robot.addAction(&wander, 50);
+  robot.addAction(&map, 40);
   
   // wait for robot task loop to end before exiting the program
   robot.waitForRunExit();

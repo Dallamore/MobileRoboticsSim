@@ -1,2 +1,7 @@
-﻿  wander.cpp
-  Assignment2Robot.vcxproj -> C:\Users\David\Documents\Robotics\Assignment2Robot\x64\Debug\Assignment2Robot.exe
+﻿  map.cpp
+c:\users\david\documents\robotics\assignment2robot\assignment2robot\map.cpp(35): error C2440: 'type cast': cannot convert from 'unsigned __int64 (__cdecl std::vector<double,std::allocator<_Ty>>::* )(void) noexcept const' to 'int'
+          with
+          [
+              _Ty=double
+          ]
+  c:\users\david\documents\robotics\assignment2robot\assignment2robot\map.cpp(35): note: There is no context in which this conversion is possible
