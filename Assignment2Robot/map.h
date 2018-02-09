@@ -9,9 +9,20 @@ public:
 
 	int window();
 
-	double rX;
-	double rY;
+	double robotX;
+	double robotY;
+	double robotTh;
+	double x;
+	double y;
+	double hypot;
+	double ths;
+	double xs;
+	double ys;
+	double thetaS;
 
-	std::list<double> xs;
+	double r, angle;
+
+	double leftSonar;
+	double rightSonar;
 
 };
