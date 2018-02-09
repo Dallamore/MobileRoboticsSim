@@ -17,30 +17,10 @@ ArActionDesired * map::fire(ArActionDesired d) {
 	rX = myRobot->getX();
 	rY = myRobot->getY();
 
-	using namespace std;
+	std::ofstream outfile;
 
-	xs.emplace_back("1");
-
-	ofstream mapFile;
-	mapFile.open("map.csv");
-	//mapFile << "This is the first cell in the first column.\n";
-	//mapFile << "a,b,c,\n";
-	//mapFile << "c,s,v,\n";
-	//mapFile << "1,2,3.456\n";
-	//mapFile << "semi;colon";
-	//mapFile << "\n" << rX << "," << rY << "\n";
-	
-
-	mapFile << xs.a << "\n";
-
-
-
-	//printf("rX: %.2f xY: %.2f\n", rX, rY);
-	mapFile.close();
-
-
-
-	
+	outfile.open("map.csv", std::ios::app);
+	outfile << rX << "," << rY << "\n";
 
 	return &desiredState;
 }
