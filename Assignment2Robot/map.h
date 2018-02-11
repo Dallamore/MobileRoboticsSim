@@ -7,8 +7,6 @@ public:
 	virtual ~map() {}
 	ArActionDesired desiredState;
 
-	int window();
-
 	double robotX;
 	double robotY;
 	double robotTh;

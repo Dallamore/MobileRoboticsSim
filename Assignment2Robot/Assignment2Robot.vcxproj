@@ -76,13 +76,13 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Program Files\MobileRobots\Aria;C:\Program Files\MobileRobots\Aria\lib64;C:\Program Files\MobileRobots\Aria\bin64;C:\Program Files\MobileRobots\Aria\include;C:\Program Files\MobileRobots\SFML-2.4.2\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Program Files\MobileRobots\Aria;C:\Program Files\MobileRobots\Aria\lib64;C:\Program Files\MobileRobots\Aria\bin64;C:\Program Files\MobileRobots\Aria\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <AdditionalLibraryDirectories>C:\Program Files\MobileRobots\Aria\lib64\;C:\Program Files\MobileRobots\SFML-2.4.2\lib</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\Program Files\MobileRobots\Aria\lib64\</AdditionalLibraryDirectories>
     </Link>
     <Link>
-      <AdditionalDependencies>AriaDebugVC15.lib;sfml-graphics-d.lib;sfml-window-d.lib;sfml-system-d.lib;sfml-network-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>AriaDebugVC15.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -91,13 +91,13 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Program Files\MobileRobots\Aria;C:\Program Files\MobileRobots\Aria\lib64;C:\Program Files\MobileRobots\Aria\bin64;C:\Program Files\MobileRobots\Aria\include;C:\Program Files\MobileRobots\SFML-2.4.2\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Program Files\MobileRobots\Aria;C:\Program Files\MobileRobots\Aria\lib64;C:\Program Files\MobileRobots\Aria\bin64;C:\Program Files\MobileRobots\Aria\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <AdditionalLibraryDirectories>C:\Program Files\MobileRobots\Aria\lib64\;C:\Program Files\MobileRobots\SFML-2.4.2\lib</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\Program Files\MobileRobots\Aria\lib64\</AdditionalLibraryDirectories>
     </Link>
     <Link>
-      <AdditionalDependencies>AriaDebugVC15.lib;sfml-graphics-d.lib;sfml-window-d.lib;sfml-system-d.lib;sfml-network-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>AriaDebugVC15.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">

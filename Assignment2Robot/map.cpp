@@ -4,9 +4,8 @@
 #include <vector>
 #include <Aria.h>
 #include "map.h"
-#include <SFML/Graphics.hpp>
 
-map::map() : ArAction("Make a map") {
+map::map() : ArAction("Cartographer all up in here") {
 
 	//robotX = 12.6;
 	//robotY = 4.3;
@@ -24,13 +23,12 @@ ArActionDesired * map::fire(ArActionDesired d) {
 	//ArMath cos/sin uses degrees
 
 	desiredState.reset();
-	angle = myRobot->getTh();
 
 	//sonarNum = myRobot->getClosestSonarNumber(90, -90);
 
 	//r = myRobot->getSonarRange(sonarNum);
 
-	r = (myRobot->checkRangeDevicesCurrentPolar(90, -90, &angle));
+	r = (myRobot->checkRangeDevicesCurrentPolar(-90, 90, &angle));
 
 	if (r <= 3500 && count % 2 == 0) {
 		if (count >= 10) {
@@ -42,17 +40,14 @@ ArActionDesired * map::fire(ArActionDesired d) {
 		robotTh = myRobot->getTh();
 
 		thetaS = sin(robotY / r);
-		//radius = myRobot->getRobotRadius();
-		radius = 0.6;
+		radius = myRobot->getRobotRadius();
+		//radius = 0.6;
 
 		//Step One - find x and y
 		x = cos(thetaS) * (r + radius);
 		y = sin(thetaS) * (r + radius);
 
 		//Step Two - rotate to global coordinates
-
-		//x = ArMath::radToDeg(x);
-		//y = ArMath::radToDeg(y);
 
 		ArMath::pointRotate(&x, &y, robotTh);
 
@@ -72,40 +67,4 @@ ArActionDesired * map::fire(ArActionDesired d) {
 	count++;
 	
 	return &desiredState;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-int map::window()
-{
-	sf::RenderWindow window(sf::VideoMode(200, 200), "SFML works!");
-	sf::CircleShape shape(100.f);
-	shape.setFillColor(sf::Color::Green);
-
-	while (window.isOpen())
-	{
-		sf::Event event;
-		while (window.pollEvent(event))
-		{
-			if (event.type == sf::Event::Closed)
-				window.close();
-		}
-
-		window.clear();
-		window.draw(shape);
-		window.display();
-	}
-
-	return 0;
 }

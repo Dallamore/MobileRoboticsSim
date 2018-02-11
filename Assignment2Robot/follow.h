@@ -8,7 +8,6 @@ public:
 
 protected:
 	int speed;
-	double deltaHeading;
 	enum state {
 		idle,
 		following
@@ -27,14 +26,12 @@ protected:
 	double iOut;
 	double dOut;
 
-	double radius;
-	double last_angle;
-	double last_out;
+	double lastAngle;
+	double lastOut;
 	double errorHistory;
 	double prevError;
-	
 	double angle;
-	bool first;
+	double distance;
 
 	double leftSonar;
 	double rightSonar;

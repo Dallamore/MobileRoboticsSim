@@ -12,7 +12,7 @@ protected:
 		beginTurn, 
 		duringTurn};
 	int state;
-
+	double range;
 	double heading;
 	double distance;
 	double travelled;
