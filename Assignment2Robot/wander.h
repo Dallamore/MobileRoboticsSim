@@ -7,19 +7,18 @@ public:
 	ArActionDesired desiredState;
 
 protected:
-	enum state {forwards, turn};
+	enum state {beginForwards, 
+		duringForwards, 
+		beginTurn, 
+		duringTurn};
 	int state;
 
 	double heading;
 	double distance;
 	double travelled;
-	double oldX;
-	double oldY;
 	double angle;
-	double oldAngle;
 	int speed;
-
-	double currentAngle;
-	double aim;
-
+	double theta;
+	double beginForwardsX;
+	double beginForwardsY;
 };

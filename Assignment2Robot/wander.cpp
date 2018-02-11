@@ -6,71 +6,53 @@
 wander::wander() : ArAction("Wander around") {
 	speed = 200;
 	heading = 8;
-	state = forwards;
-	oldX = 0;
-	oldY = 0;
-	distance = 0;
+	state = beginForwards;
+	distance = 1;
 	travelled = 0;
+	angle = 0;
 }
 
 ArActionDesired * wander::fire(ArActionDesired d) {
 	desiredState.reset();
-
-	travelled = sqrt(pow(myRobot->getX() - oldX, 2) + pow(myRobot->getY() - oldY, 2));
-
-	currentAngle = myRobot->getTh();
-	aim = oldAngle + angle;
-
-	if (travelled >= distance) {
-		state = turn;
+	theta = myRobot->getTh();
+	if (travelled > distance) {
+		state = beginTurn;
 		travelled = 0;
+		speed = 0;
+		printf("ARRIVED\n");
 	}
-	else {
-		state = forwards;
-	}
-
 	switch (state) {
-	case forwards:
+	case beginForwards:
+		distance = (rand() % 1000 + 500);
+		printf("Chosen distance: %f\n", distance);
+		beginForwardsX = myRobot->getX();
+		beginForwardsY = myRobot->getY();
+		heading = 0;
 		speed = 200;
+		state = duringForwards;
 		break;
-	case turn:
-		//printf("currentAngle = %.2f, angle = %.2f\n", currentAngle, angle);
-
-		if (currentAngle >= aim - 5 && currentAngle <= aim + 5) {
-			oldX = myRobot->getX();
-			oldY = myRobot->getY();
-			oldAngle = myRobot->getTh();
-			state = forwards;
-			distance = (rand() % 1000 + 500);
-
-			/*int min = -90;
-			int max = 180;
-			angle = (min + (rand() % (int)(max - min)));*/
-
-
-			angle = rand() % 280 + -140;
-
-			heading = angle;
-
-			travelled = 0;
-
-			if (angle <= currentAngle) {
-				heading = -heading;
-			}
-
-
-			printf("wander: angle %.2f     distance %.2f\n", angle, distance);
+	case duringForwards:
+		travelled = sqrt(pow(myRobot->getX() - beginForwardsX, 2) + pow(myRobot->getY() - beginForwardsY, 2));
+		printf("Travelled: %f\n", travelled);
+		break;
+	case beginTurn:
+		angle = rand() % 280 + -140;
+		printf("Chosen turn: %f\n", angle);
+		state = duringTurn;
+		break;
+	case duringTurn:
+		if (theta >= angle - 5 && theta <= angle + 5) {
+			printf("TURN COMPLETE\n");
+			state = beginForwards;
 		}
 		else {
-			speed = 50;
-			desiredState.setDeltaHeading(heading);
+			printf("Turned = %f\n", myRobot->getTh());
+			desiredState.setHeading(angle);
 		}
 		break;
-
 	default:
 		break;
 	}
 	desiredState.setVel(speed);
-
 	return &desiredState;
 }

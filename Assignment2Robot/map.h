@@ -19,6 +19,10 @@ public:
 	double xs;
 	double ys;
 	double thetaS;
+	double radius;
+	double sonarNum;
+
+	int count;
 
 	double r, angle;
 
