@@ -45,7 +45,7 @@ ArActionDesired * edgeFollow::fire(ArActionDesired d) {
 			break;
 		}
 		
-		printf("Edge Follow: %.2f\n", distance);
+		printf("FOLLOW: %.2f\n", distance);
 		pOut = pGain * error;
 		iOut = iGain * errorHistory;
 		dOut = dGain * (error - prevError);

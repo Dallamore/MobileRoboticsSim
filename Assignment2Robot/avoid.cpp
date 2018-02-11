@@ -7,7 +7,7 @@ avoid::avoid() : ArAction("avoid dat crash boi") {
 	speed = 50;
 	state = idle;
 	proximity = 500;
-	heading = 135;
+	heading = 100;
 }
 
 ArActionDesired * avoid::fire(ArActionDesired d) {
@@ -46,7 +46,7 @@ ArActionDesired * avoid::fire(ArActionDesired d) {
 		desiredState.setVel(speed);
 		state = idle;
 
-		printf("avoid with left turn %.2f\n", heading);
+		printf("AVOID: left turn %.2f\n", heading);
 
 		break;
 
@@ -55,7 +55,7 @@ ArActionDesired * avoid::fire(ArActionDesired d) {
 		desiredState.setVel(speed);
 		state = idle;
 
-		printf("avoid with right turn %.2f\n", -heading);
+		printf("AVOID: right turn %.2f\n", -heading);
 
 		break;
 

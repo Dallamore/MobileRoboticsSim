@@ -6,7 +6,6 @@
 #include "map.h"
 
 map::map() : ArAction("Cartographer all up in here") {
-
 	//robotX = 12.6;
 	//robotY = 4.3;
 	//robotTh = -0.2;
@@ -15,7 +14,6 @@ map::map() : ArAction("Cartographer all up in here") {
 	//radius = 0.6;
 
 	count = 0;
-
 }
 
 ArActionDesired * map::fire(ArActionDesired d) {
@@ -24,16 +22,13 @@ ArActionDesired * map::fire(ArActionDesired d) {
 
 	desiredState.reset();
 
-	//sonarNum = myRobot->getClosestSonarNumber(90, -90);
-
+	//sonarNum = myRobot->getClosestSonarNumber(-90, 90);
 	//r = myRobot->getSonarRange(sonarNum);
 
-	r = (myRobot->checkRangeDevicesCurrentPolar(-90, 90, &angle));
+	r = (myRobot->checkRangeDevicesCurrentPolar(-90, 90));
 
-	if (r <= 3500 && count % 2 == 0) {
-		if (count >= 10) {
-			count = 0;
-		}
+	if (r <= 3500 && count >= 10) {
+		count = 0;
 
 		robotX = myRobot->getX();
 		robotY = myRobot->getY();
@@ -55,9 +50,9 @@ ArActionDesired * map::fire(ArActionDesired d) {
 		xs = robotX + x;
 		ys = robotY + y;
 
-		printf("xs = %f, ys = %f\n", xs, ys);
+		//printf("xs = %f, ys = %f\n", xs, ys);
 
-		//Print to CSV
+		//Print to CSV file
 		std::ofstream outfile;
 		outfile.open("map.csv", std::ios::app);
 		outfile << xs << "," << ys << "\n";
