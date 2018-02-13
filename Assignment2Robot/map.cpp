@@ -22,10 +22,14 @@ ArActionDesired * map::fire(ArActionDesired d) {
 
 	desiredState.reset();
 
-	//sonarNum = myRobot->getClosestSonarNumber(-90, 90);
-	//r = myRobot->getSonarRange(sonarNum);
+	//something wrong with the sonar
 
-	r = (myRobot->checkRangeDevicesCurrentPolar(-90, 90));
+	//sonarNum = myRobot->getClosestSonarNumber(95, 85);
+	r = myRobot->getSonarRange(1);
+
+	//printf("R: %f\n", r);
+
+	//r = (myRobot->checkRangeDevicesCurrentPolar(-100, -80));
 
 	if (r <= 3500 && count >= 10) {
 		count = 0;
@@ -34,21 +38,21 @@ ArActionDesired * map::fire(ArActionDesired d) {
 		robotY = myRobot->getY();
 		robotTh = myRobot->getTh();
 
-		thetaS = sin(robotY / r);
-		radius = myRobot->getRobotRadius();
-		//radius = 0.6;
+		//thetaS = sin(robotY / r);
+		//radius = myRobot->getRobotRadius();
+		////radius = 0.6;
 
-		//Step One - find x and y
-		x = cos(thetaS) * (r + radius);
-		y = sin(thetaS) * (r + radius);
+		////Step One - find x and y
+		//x = cos(thetaS) * (r + radius);
+		//y = sin(thetaS) * (r + radius);
 
-		//Step Two - rotate to global coordinates
+		////Step Two - rotate to global coordinates
 
-		ArMath::pointRotate(&x, &y, robotTh);
+		//ArMath::pointRotate(&x, &y, robotTh);
 
-		//Step Three - translate to global coordinates
-		xs = robotX + x;
-		ys = robotY + y;
+		////Step Three - translate to global coordinates
+		//xs = robotX + x;
+		//ys = robotY + y;
 
 		//printf("xs = %f, ys = %f\n", xs, ys);
 

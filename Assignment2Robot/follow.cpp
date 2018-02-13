@@ -6,12 +6,9 @@
 edgeFollow::edgeFollow() : ArAction("Stickin' to the straight and narrow") {
 	speed = 200;
 	setPoint = 1000;
-	lastOut = 0;
 	pGain = 0.03;		//0.03
 	iGain = 0.00005;	//0.00005
 	dGain = 1.3;		//1.3
-
-	lastAngle = 0;
 }
 
 ArActionDesired * edgeFollow::fire(ArActionDesired d) {
@@ -21,9 +18,11 @@ ArActionDesired * edgeFollow::fire(ArActionDesired d) {
 
 	if (leftSonar <= rightSonar) {
 		distance = leftSonar;
+		leftOrRight = 0;
 	}
 	else {
 		distance = rightSonar;
+		leftOrRight = 1;
 	}
 
 	switch (state) {
@@ -44,20 +43,18 @@ ArActionDesired * edgeFollow::fire(ArActionDesired d) {
 			state = idle;
 			break;
 		}
-		
 		printf("FOLLOW: %.2f\n", distance);
 		pOut = pGain * error;
 		iOut = iGain * errorHistory;
 		dOut = dGain * (error - prevError);
 		output = dOut + pOut + iOut;
-		lastOut = output;
 		errorHistory = errorHistory + error;
 
-		if (angle < 0) {
+		if (leftOrRight == 1){
 			output = -output;
 		}
+
 		desiredState.setDeltaHeading(output);
-		lastAngle = angle;
 		desiredState.setVel(speed);
 		state = idle;
 		break;

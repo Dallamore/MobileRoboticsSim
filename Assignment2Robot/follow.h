@@ -26,14 +26,12 @@ protected:
 	double iOut;
 	double dOut;
 
-	double lastAngle;
-	double lastOut;
+	bool leftOrRight;//L=0, R=1
+
 	double errorHistory;
 	double prevError;
-	double angle;
 	double distance;
 
 	double leftSonar;
 	double rightSonar;
-
 };

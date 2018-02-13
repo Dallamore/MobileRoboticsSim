@@ -9,17 +9,15 @@ public:
 protected:
 	double leftSonar;
 	double rightSonar;
-	bool leftyRighty;
 	double distance;
 
 	enum STATE {
 		idle,
-		left,
-		right
+		turn
 	};
-
-	int state;
 	int speed;
+	int state;
 	double proximity;
 	double heading;
+	double theta;
 };
