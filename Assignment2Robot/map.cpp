@@ -25,36 +25,38 @@ ArActionDesired * map::fire(ArActionDesired d) {
 	//something wrong with the sonar
 
 	//sonarNum = myRobot->getClosestSonarNumber(95, 85);
-	r = myRobot->getSonarRange(1);
+	//r = myRobot->getSonarRange(1);
 
 	//printf("R: %f\n", r);
 
-	//r = (myRobot->checkRangeDevicesCurrentPolar(-100, -80));
+	r = (myRobot->checkRangeDevicesCurrentPolar(40, 60, &objectTheta));
 
-	if (r <= 3500 && count >= 10) {
+	if (r <= 3500 && count >= 5) {
 		count = 0;
 
 		robotX = myRobot->getX();
 		robotY = myRobot->getY();
-		robotTh = myRobot->getTh();
+		robotTh = -myRobot->getTh();
 
-		//thetaS = sin(robotY / r);
-		//radius = myRobot->getRobotRadius();
-		////radius = 0.6;
+		//objectTheta = sin(robotY / r);
+		radius = myRobot->getRobotRadius();
+		//radius = 0.6;
 
-		////Step One - find x and y
-		//x = cos(thetaS) * (r + radius);
-		//y = sin(thetaS) * (r + radius);
+		//Step One - find x and y
+		//objectX = cos(objectTheta) * (r + radius);
+		//objectY = sin(objectTheta) * (r + radius);
+		objectX = ArMath::cos(objectTheta) * (r + radius);
+		objectY = ArMath::sin(objectTheta) * (r + radius);
 
-		////Step Two - rotate to global coordinates
+		//Step Two - rotate to global coordinates
 
-		//ArMath::pointRotate(&x, &y, robotTh);
+		ArMath::pointRotate(&objectX, &objectY, robotTh);
 
-		////Step Three - translate to global coordinates
-		//xs = robotX + x;
-		//ys = robotY + y;
+		//Step Three - translate to global coordinates
+		xs = robotX + objectX;
+		ys = robotY + objectY;
 
-		//printf("xs = %f, ys = %f\n", xs, ys);
+		printf("xs = %f, ys = %f\n", xs, ys);
 
 		//Print to CSV file
 		std::ofstream outfile;

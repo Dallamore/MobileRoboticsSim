@@ -39,7 +39,7 @@ ArActionDesired * edgeFollow::fire(ArActionDesired d) {
 		if (error >= 4000) {
 			error = prevError;
 		}
-		if (error >= 500 || error <= -500) {
+		if (error > 500 || error <= -500) {
 			state = idle;
 			break;
 		}
@@ -50,9 +50,9 @@ ArActionDesired * edgeFollow::fire(ArActionDesired d) {
 		output = dOut + pOut + iOut;
 		errorHistory = errorHistory + error;
 
-		if (leftOrRight == 1){
-			output = -output;
-		}
+		//if (leftOrRight == 1){
+		//	output = -output;
+		//}
 
 		desiredState.setDeltaHeading(output);
 		desiredState.setVel(speed);

@@ -16,7 +16,7 @@ ArActionDesired * avoid::fire(ArActionDesired d) {
 	theta = myRobot->getTh();
 	switch (state) {
 	case idle:
-		if (distance <= proximity) {
+		if (distance < proximity) {
 			state = turn;
 			speed = 0;
 		}

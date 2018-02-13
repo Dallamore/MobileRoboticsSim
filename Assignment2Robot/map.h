@@ -10,19 +10,18 @@ public:
 	double robotX;
 	double robotY;
 	double robotTh;
-	double x;
-	double y;
-	double hypot;
+	double objectX;
+	double objectY;
 	double ths;
 	double xs;
 	double ys;
-	double thetaS;
 	double radius;
 	double sonarNum;
+	double objectTheta;
 
 	int count;
 
-	double r, angle;
+	double r;
 
 	double leftSonar;
 	double rightSonar;
