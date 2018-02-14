@@ -24,7 +24,7 @@ ArActionDesired * edgeFollow::fire(ArActionDesired d) {
 		distance = rightSonar;
 		leftOrRight = 1;
 	}
-
+	//printf("distance = %f\n", distance);
 	switch (state) {
 	case idle:
 		if (distance <= 1500) {
@@ -39,10 +39,10 @@ ArActionDesired * edgeFollow::fire(ArActionDesired d) {
 		if (error >= 4000) {
 			error = prevError;
 		}
-		if (error > 500 || error <= -500) {
-			state = idle;
-			break;
-		}
+		//if (error > 500 || error <= -500) {
+		//	state = idle;
+		//	break;
+		//}
 		printf("FOLLOW: %.2f\n", distance);
 		pOut = pGain * error;
 		iOut = iGain * errorHistory;

@@ -13,11 +13,14 @@ protected:
 
 	enum STATE {
 		idle,
-		turn
+		left,
+		right
 	};
 	int speed;
 	int state;
 	double proximity;
 	double heading;
 	double theta;
+	double objectTheta;
+	bool leftOrRight;
 };

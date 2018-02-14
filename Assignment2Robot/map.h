@@ -26,4 +26,6 @@ public:
 	double leftSonar;
 	double rightSonar;
 
+	std::ofstream output;
+
 };
