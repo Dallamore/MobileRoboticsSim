@@ -7,25 +7,15 @@ public:
 	virtual ~map() {}
 	ArActionDesired desiredState;
 
+	int count;
+	double r;
+	double objectTheta;
 	double robotX;
 	double robotY;
 	double robotTh;
+	double radius;
 	double objectX;
 	double objectY;
-	double ths;
 	double xs;
 	double ys;
-	double radius;
-	double sonarNum;
-	double objectTheta;
-
-	int count;
-
-	double r;
-
-	double leftSonar;
-	double rightSonar;
-
-	std::ofstream output;
-
 };

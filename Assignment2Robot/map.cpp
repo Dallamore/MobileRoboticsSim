@@ -13,7 +13,7 @@ map::map() : ArAction("Cartographer all up in here") {
 	//r = 1.1;
 	//thetaS = 1.35;
 	//radius = 0.6;
-
+	
 	count = 0;
 }
 
@@ -28,7 +28,7 @@ ArActionDesired * map::fire(ArActionDesired d) {
 
 		robotX = myRobot->getX();
 		robotY = myRobot->getY();
-		robotTh = myRobot->getTh();
+		robotTh = -myRobot->getTh();
 
 		radius = myRobot->getRobotRadius();
 
@@ -42,10 +42,11 @@ ArActionDesired * map::fire(ArActionDesired d) {
 		//Step Three - translate to global coordinates
 		xs = robotX + objectX;
 		ys = robotY + objectY;
-
+		
 		//Print to CSV file
-		output.open("map.csv", std::ios::app);
-		output << xs << "," << ys << "\n";
+		std::ofstream printToCsv;
+		printToCsv.open("map.csv", std::ios::app);
+		printToCsv << xs << "," << ys << "," << robotX << "," << robotY << "\n";
 	}
 	count++;
 	return &desiredState;

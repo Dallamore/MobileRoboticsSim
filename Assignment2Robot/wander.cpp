@@ -5,7 +5,7 @@
 
 wander::wander() : ArAction("Wander around") {
 	speed = 200;
-	heading = 8;
+	heading = 10;
 	state = beginForwards;
 	distance = 1;
 	travelled = 0;
