@@ -3,6 +3,7 @@
 #include "wander.h"
 #include "avoid.h"
 #include "map.h"
+#include <SFML/Graphics.hpp>
 
 int main(int argc, char **argv)
 {
@@ -66,13 +67,50 @@ int main(int argc, char **argv)
   avoid avoid;
   map map;
 
+
+
+
+
+
+
   robot.addAction(&recover, 100);
   robot.addAction(&bumpers, 75);
   robot.addAction(&avoid, 70);
   robot.addAction(&follow, 60);
   robot.addAction(&wander, 50);
   robot.addAction(&map, 40);
+
+
+  //sf::RenderWindow window(sf::VideoMode(600, 600), "SFML works!");
+  //sf::CircleShape shape(1);
+  //shape.setFillColor(sf::Color::Green);
+  //shape.setPosition(200, 400);
+
+  ////double x = map.xs;
+
+  //while (window.isOpen())
+  //{
+	 // sf::Event event;
+	 // while (window.pollEvent(event))
+	 // {
+		//  if (event.type == sf::Event::Closed)
+		//	  window.close();
+	 // }
+	 // window.clear();
+	 // window.draw(shape);
+
+
+	 // window.display();
+
+  //}
+
+
+
   
+
+
+
+
   // wait for robot task loop to end before exiting the program
   robot.waitForRunExit();
   

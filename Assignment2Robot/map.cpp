@@ -5,6 +5,7 @@
 #include <Aria.h>
 #include "map.h"
 
+
 map::map() : ArAction("Cartographer all up in here") {
 	//Know values for testing, answers should be 13.3, 5.85
 	//robotX = 12.6;
@@ -12,8 +13,7 @@ map::map() : ArAction("Cartographer all up in here") {
 	//robotTh = -0.2;
 	//r = 1.1;
 	//thetaS = 1.35;
-	//radius = 0.6;
-	
+	//radius = 0.6;	
 	count = 0;
 }
 
@@ -47,6 +47,7 @@ ArActionDesired * map::fire(ArActionDesired d) {
 		std::ofstream printToCsv;
 		printToCsv.open("map.csv", std::ios::app);
 		printToCsv << xs << "," << ys << "," << robotX << "," << robotY << "\n";
+
 	}
 	count++;
 	return &desiredState;
