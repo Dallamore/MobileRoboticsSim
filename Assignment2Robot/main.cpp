@@ -28,7 +28,6 @@ int main(int argc, char **argv)
     }
   }
 
-
   // Trigger argument parsing
   if (!Aria::parseArgs() || !argParser.checkHelpAndWarnUnparsed())
   {
@@ -46,7 +45,6 @@ int main(int argc, char **argv)
   robot.addRangeDevice(&sonar);
 
   robot.runAsync(true);
-
   
   // try to connect to laser. if fail, warn but continue, using sonar only
   if(!laserConnector.connectLasers())
@@ -54,10 +52,8 @@ int main(int argc, char **argv)
     ArLog::log(ArLog::Normal, "Warning: unable to connect to requested lasers, will wander using robot sonar only.");
   }
 
-
   // turn on the motors
   robot.enableMotors();
- 
 
   // add a set of actions that combine together to effect the wander behavior
   ArActionStallRecover recover;
@@ -67,12 +63,6 @@ int main(int argc, char **argv)
   avoid avoid;
   map map;
 
-
-
-
-
-
-
   robot.addAction(&recover, 100);
   robot.addAction(&bumpers, 75);
   robot.addAction(&avoid, 70);
@@ -80,14 +70,11 @@ int main(int argc, char **argv)
   robot.addAction(&wander, 50);
   robot.addAction(&map, 40);
 
-
   //sf::RenderWindow window(sf::VideoMode(600, 600), "SFML works!");
   //sf::CircleShape shape(1);
   //shape.setFillColor(sf::Color::Green);
   //shape.setPosition(200, 400);
-
   ////double x = map.xs;
-
   //while (window.isOpen())
   //{
 	 // sf::Event event;
@@ -98,18 +85,8 @@ int main(int argc, char **argv)
 	 // }
 	 // window.clear();
 	 // window.draw(shape);
-
-
 	 // window.display();
-
   //}
-
-
-
-  
-
-
-
 
   // wait for robot task loop to end before exiting the program
   robot.waitForRunExit();
